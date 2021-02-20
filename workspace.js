@@ -24,12 +24,15 @@ class Workspace extends Master{
 }
     open = new function(){
     // opens the bookmarks of a workplace in chrome 
+        parents = [this.master]
+        parents.concat(getparent())
     this.bookmarks.forEach(function(item){
         chrome.tabs.create({ url: item });
     })
 }
     explore = new function(){
         // displays a list of the bookmarks and workspaces within this workspace
+        
     }
     addtab = new function(){
         chrome.tabs.query({"active": true, "currentWindow": true}, function(tabs){
@@ -37,14 +40,20 @@ class Workspace extends Master{
         });
     }
     getparent = new function(){
-        //returns bookmarks in the parent directorys
-        
+        //returns the parent directorys
+        parents = []
         if (typeof this.master !== 'undefined'){
-            this.master.getparent()
+            parents.concat(this.master.getparent())
         }
+        return parents
         
     }
 
 }
 
+School :
+    
+hub 
+    math : 
+    calculator
 
